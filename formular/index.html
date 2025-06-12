@@ -111,14 +111,16 @@
     <label><input type="radio" name="selbststaendig" value="Nein" /> Nein</label>
   </div>
 
-  <label>Geplante Maßnahme</label>
-  <select name="massnahmen">
-    <option>Bitte auswählen</option>
-    <option>Beratung / Strategie</option>
-    <option>Schulung / Workshop</option>
-    <option>Audit / Zertifizierung</option>
-    <option>Förderung / Finanzierung</option>
-  </select>
+     <label for="massnahmen">Geplante Maßnahme</label>
+      <select id="massnahmen" name="massnahmen" required>
+        <option value="">Bitte auswählen</option>
+        <option>Beratung / Strategie</option>
+        <option>Risikoanalyse</option>
+        <option>Datenschutz / Compliance</option>
+        <option>KI-Tool-Integration</option>
+        <option>Mitarbeiterschulung</option>
+        <option>noch unklar</option>
+      </select>
 
   <h2>KI-Reifegrad Fragen</h2>
      <div id="questions"></div>
