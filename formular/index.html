@@ -1,200 +1,228 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KI-Check Pro – Strategischer Selbsttest</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KI-Sicherheits-Check</title>
+
+  <!-- Schrift & Design -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="https://check.ki-sicherheit.jetzt/badges/ki-sicherheit-logo.png" type="image/png" />
+
+  <!-- CSS-Styling (optional via extern oder eingebettet) -->
   <style>
     body {
-      font-family: 'Helvetica Neue', sans-serif;
-      margin: 0;
-      padding: 40px;
-      background-color: #fdfdfd;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafc;
       color: #1a1a1a;
-      max-width: 800px;
-      margin: auto;
+      margin: 0;
+      padding: 0;
     }
-    h1 {
-      color: #002649;
-      font-size: 28pt;
-    }
-    h2 {
-      margin-top: 2em;
-      font-size: 20pt;
-      border-bottom: 2px solid #dde3ee;
-      padding-bottom: 0.3em;
-      color: #003366;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 20px;
-    }
-    select, input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      font-size: 1em;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .question {
-      margin-top: 1.5em;
-      padding: 15px;
-      background: #f9fafc;
-      border-left: 4px solid #003366;
-      border-radius: 8px;
-    }
-    .question small {
-      display: block;
-      color: #555;
-      margin-top: 5px;
-    }
-    .radio-group {
-      margin-top: 10px;
-    }
-    .radio-group label {
-      font-weight: normal;
-      display: block;
-      margin-left: 20px;
-    }
-    textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 1em;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      resize: vertical;
-      min-height: 60px;
-    }
-    button {
-      margin-top: 30px;
-      background-color: #003366;
+
+    header {
+      background-color: #002649;
       color: white;
-      padding: 12px 20px;
-      font-size: 1em;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+      padding: 20px;
+      text-align: center;
     }
-    button:hover {
-      background-color: #002244;
+
+    h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+
+    form {
+      max-width: 700px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 600;
+    }
+
+    input[type="text"], select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .form-submit {
+      background-color: #002649;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .form-submit:hover {
+      background-color: #004080;
     }
   </style>
+  <!-- Formular-Logik -->
+  <script defer src="form.js"></script>
 </head>
 <body>
-  <form id="kiForm">
-  <h1>KI-Check Pro – Strategischer Selbsttest</h1>
+  <header>
+    <img src="https://check.ki-sicherheit.jetzt/badges/ki-sicherheit-logo.png" alt="Logo" style="max-height: 60px;" />
+    <h1>KI-Sicherheits-Check PRO</h1>
+    <p>Ihr strategischer Schnellcheck für sichere KI-Einführung</p>
+  </header>
 
-  <label>Unternehmen</label>
-  <input type="text" name="unternehmen" />
+  <form id="ki-form">
 
-  <label>Name</label>
-  <input type="text" name="name" />
+    <!-- Name / Firma -->
+    <label for="name">Ihr Name *</label>
+    <input type="text" id="name" name="name" required />
 
-  <label>Branche</label>
-  <select name="branche">
-    <option>Bitte auswählen</option>
-    <option>Medien</option>
-    <option>Bildung</option>
-    <option>Verwaltung</option>
-    <option>Handel</option>
-    <option>IT / Software</option>
-    <option>Sonstige</option>
-  </select>
+    <label for="unternehmen">Ihr Unternehmen *</label>
+    <input type="text" id="unternehmen" name="unternehmen" required />
 
-  <label>Selbstständig / Freiberuflich?</label>
-  <div class="radio-group">
-    <label><input type="radio" name="selbststaendig" value="Ja" /> Ja</label>
-    <label><input type="radio" name="selbststaendig" value="Nein" /> Nein</label>
-  </div>
+    <!-- Branche -->
+    <label for="branche">Ihre Branche *</label>
+    <select id="branche" name="branche" required>
+      <option value="">Bitte wählen</option>
+      <option value="Gesundheit & Pflege">Gesundheit & Pflege</option>
+      <option value="Industrie & Produktion">Industrie & Produktion</option>
+      <option value="Handwerk">Handwerk</option>
+      <option value="Medien & Kommunikation">Medien & Kommunikation</option>
+      <option value="Bildung & Forschung">Bildung & Forschung</option>
+      <option value="IT & Technologie">IT & Technologie</option>
+      <option value="Sonstige">Sonstige</option>
+    </select>
 
-     <label for="massnahmen">Geplante Maßnahme</label>
-      <select id="massnahmen" name="massnahmen" required>
-        <option value="">Bitte auswählen</option>
-        <option>Beratung / Strategie</option>
-        <option>Risikoanalyse</option>
-        <option>Datenschutz / Compliance</option>
-        <option>KI-Tool-Integration</option>
-        <option>Mitarbeiterschulung</option>
-        <option>noch unklar</option>
-      </select>
+    <label for="branche_sonstige">Falls „Sonstige“ – bitte konkretisieren:</label>
+    <input type="text" id="branche_sonstige" name="branche_sonstige" />
 
-  <h2>KI-Reifegrad Fragen</h2>
-     <div id="questions"></div>
+    <!-- Selbstständig -->
+    <label for="selbststaendig">Sind Sie selbstständig oder freiberuflich tätig?</label>
+    <select id="selbststaendig" name="selbststaendig" required>
+      <option value="">Bitte wählen</option>
+      <option value="Ja">Ja</option>
+      <option value="Nein">Nein</option>
+    </select>
 
-  <h2>Freitextfelder</h2>
-  <label>Welche Tools kommen bereits zum Einsatz?</label>
-  <textarea name="tools"></textarea>
+    <!-- Fragen 1–10 -->
+    <h2 style="margin-top: 30px;">Bewertung Ihres Unternehmens</h2>
 
-  <label>Was ist Ihr zentrales Ziel beim KI-Einsatz?</label>
-  <textarea name="ziel"></textarea>
+    <p><strong>Bitte beantworten Sie die folgenden 10 Fragen mit einer Skala von 1 (trifft nicht zu) bis 4 (trifft voll zu):</strong></p>
 
-  <label>Wo sehen Sie aktuell die größten Herausforderungen?</label>
-  <textarea name="herausforderung"></textarea>
+    <!-- Schleifenersatz: statisch -->
+    <label for="frage1">1. Wir haben klare Ziele für den KI-Einsatz definiert.</label>
+    <select id="frage1" name="frage1" required>
+      <option value="">Bitte wählen</option>
+      <option value="1">1 – trifft nicht zu</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4 – trifft voll zu</option>
+    </select>
 
-  <button type="submit">Analyse starten</button>
+    <label for="frage2">2. Wir verfügen über geeignete Daten zur Umsetzung.</label>
+    <select id="frage2" name="frage2" required>
+      <option value="">Bitte wählen</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <label for="frage3">3. Wir haben einen konkreten Anwendungsfall identifiziert.</label>
+    <select id="frage3" name="frage3" required>
+      <option value="">Bitte wählen</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <label for="frage4">4. Unser Team ist mit KI vertraut oder geschult.</label>
+    <select id="frage4" name="frage4" required>
+      <option value="">Bitte wählen</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <label for="frage5">5. Es existieren Prozesse zum Umgang mit KI-Risiken.</label>
+    <select id="frage5" name="frage5" required>
+      <option value="">Bitte wählen</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <label for="frage6">6. Wir berücksichtigen rechtliche Aspekte (DSGVO, Urheberrecht etc.).</label>
+    <select id="frage6" name="frage6" required>
+      <option value="">Bitte wählen</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <label for="frage7">7. KI ist Teil unserer Strategie und Geschäftsprozesse.</label>
+    <select id="frage7" name="frage7" required>
+      <option value="">Bitte wählen</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <label for="frage8">8. Wir messen Erfolge von KI-Einsätzen aktiv.</label>
+    <select id="frage8" name="frage8" required>
+      <option value="">Bitte wählen</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <label for="frage9">9. Wir nutzen Tools, Plattformen oder Schnittstellen für KI.</label>
+    <select id="frage9" name="frage9" required>
+      <option value="">Bitte wählen</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <label for="frage10">10. Wir haben interne oder externe Expertise für KI.</label>
+    <select id="frage10" name="frage10" required>
+      <option value="">Bitte wählen</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <!-- Freitextfelder -->
+    <label for="massnahmen">Welche Maßnahme planen Sie konkret?</label>
+    <textarea id="massnahmen" name="massnahmen" rows="3"></textarea>
+
+    <label for="tools">Welche Tools oder Plattformen setzen Sie bereits ein?</label>
+    <textarea id="tools" name="tools" rows="3"></textarea>
+
+    <label for="herausforderung">Wo liegt Ihre größte Herausforderung?</label>
+    <textarea id="herausforderung" name="herausforderung" rows="3"></textarea>
+
+    <label for="ziel">Welches Ziel möchten Sie durch KI erreichen?</label>
+    <textarea id="ziel" name="ziel" rows="3"></textarea>
+
+    <!-- Absenden -->
+    <button type="submit" class="form-submit">Absenden & Auswertung anfordern</button>
   </form>
-<script src="form.js"></script>
-  <script>
-    const questions = [
-      "Gibt es eine dokumentierte KI-Strategie oder Governance?",
-      "Wird der KI-Einsatz rechtlich geprüft (z. B. DSGVO, Urheberrecht)?",
-      "Führen Sie ein zentrales Verzeichnis über eingesetzte KI-Systeme?",
-      "Liegt bei externen KI-Anbietern ein AV-Vertrag oder Äquivalent vor?",
-      "Gibt es ein internes KI-Audit- oder Kontrollverfahren?",
-      "Werden Mitarbeitende in sensiblen Bereichen zum KI-Einsatz geschult?",
-      "Sind automatisierte Entscheidungen nachvollziehbar und steuerbar?",
-      "Gibt es Richtlinien zum ethischen KI-Einsatz?",
-      "Wird der KI-Einsatz regelmäßig evaluiert und angepasst?",
-      "Werden Ergebnisse auf Verzerrung oder Fehler geprüft?"
-    ];
-
-    const hints = [
-      "Eine schriftliche Strategie hilft bei Transparenz und Zielverfolgung.",
-      "Rechtskonformität ist zentral – DSGVO, Urheberrecht etc.",
-      "Ein Inventar zeigt, wo welche Systeme im Einsatz sind.",
-      "Für externe Anbieter sind AV-Verträge Pflicht.",
-      "Ein internes Prüfverfahren schafft Sicherheit.",
-      "Sensibilisierung der Mitarbeitenden senkt Risiken.",
-      "Transparente Entscheidungen sind vertrauensfördernd.",
-      "Ethikrichtlinien definieren Grenzen des Machbaren.",
-      "Evaluation erlaubt laufende Optimierung.",
-      "Bias-Checks erhöhen Fairness & Qualität."
-    ];
-
-    const container = document.getElementById('questions');
-    questions.forEach((q, i) => {
-      const field = document.createElement('div');
-
-      const label = document.createElement('label');
-      label.innerText = `${i + 1}. ${q}`;
-      label.setAttribute('for', `q${i + 1}`);
-      field.appendChild(label);
-
-      const hinweis = document.createElement('small');
-      hinweis.className = 'hinweis';
-      hinweis.innerText = hints[i];
-      field.appendChild(hinweis);
-
-      ['Ja', 'Teilweise / geplant', 'Nein'].forEach(value => {
-        const radio = document.createElement('input');
-        radio.type = 'radio';
-        radio.name = `q${i + 1}`;
-        radio.value = value.toLowerCase();
-        radio.required = true;
-
-        const radioLabel = document.createElement('label');
-        radioLabel.appendChild(radio);
-        radioLabel.append(` ${value}`);
-        field.appendChild(radioLabel);
-      });
-
-      field.style.marginBottom = '1rem';
-      container.appendChild(field);
-    });
-  </script>
 </body>
-</html>

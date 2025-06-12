@@ -1,4 +1,4 @@
-// form.js – finale Version mit Bewertungslogik & Übergabe an Make
+// form.js – finale Version mit Bewertungslogik & sauberem Payload
 
 const form = document.getElementById("kiForm");
 
@@ -7,32 +7,36 @@ form.addEventListener("submit", function (event) {
 
   const formData = new FormData(form);
 
-  // Bewertung nach Branche
-  const branchenMultiplikator = {
+  // 1. Einstellungen
+  const selbststaendig = formData.get("selbststaendig") === "ja";
+  const branche = formData.get("branche") || "Allgemein";
+
+  const multiplikatorMap = {
     "Medien": 1.1,
     "Bildung": 1.0,
     "Verwaltung": 0.9,
     "Handel": 1.0,
     "IT / Software": 1.2
   };
+  const multiplikator = multiplikatorMap[branche] || 1.0;
 
-  const selbststaendig = formData.get("selbststaendig") === "ja";
-  const branche = formData.get("branche") || "Allgemein";
-  const multiplikator = branchenMultiplikator[branche] || 1.0;
-
-  // Score berechnen
+  // 2. Antworten sammeln
+  const antworten = {};
   let score = 0;
+
   for (let i = 1; i <= 10; i++) {
-    const value = formData.get(`q${i}`);
-    if (value === "ja") score += 3;
-    else if (value === "teilweise / geplant") score += 2;
-    else if (value === "nein") score += 1;
+    const val = formData.get(`q${i}`);
+    antworten[`q${i}`] = val;
+
+    if (val === "ja") score += 3;
+    else if (val === "teilweise / geplant") score += 2;
+    else if (val === "nein") score += 1;
   }
 
   score = Math.round(score * multiplikator);
   if (selbststaendig && score < 30) score += 2;
 
-  // Status & Bewertung bestimmen
+  // 3. Status & Bewertung
   let status = "Basis";
   let bewertung = "Erste Grundlagen vorhanden, weiter so!";
   let badge_url = "https://example.com/badge-basis.png";
@@ -47,12 +51,12 @@ form.addEventListener("submit", function (event) {
     badge_url = "https://example.com/badge-exzellent.png";
   }
 
-  // Datum vorbereiten
+  // 4. Datum & Gültigkeit
   const heute = new Date();
   const datum = heute.toISOString().split("T")[0];
   const gueltig_bis = new Date(heute.setFullYear(heute.getFullYear() + 1)).toISOString().split("T")[0];
 
-  // Nutzdaten zusammenstellen
+  // 5. JSON-Payload
   const payload = {
     unternehmen: formData.get("unternehmen"),
     name: formData.get("name"),
@@ -60,20 +64,21 @@ form.addEventListener("submit", function (event) {
     selbststaendig: selbststaendig ? "Ja" : "Nein",
     massnahmen: formData.get("massnahmen"),
     score: score,
-    bewertung: bewertung,
     status: status,
-    badge_url: badge_url,
+    bewertung: bewertung,
     herausforderung: formData.get("herausforderung"),
     tools: formData.get("tools"),
     ziel: formData.get("ziel"),
     datum: datum,
-    gueltig_bis: gueltig_bis
+    gueltig_bis: gueltig_bis,
+    antworten: antworten,
+    branchenbeschreibung: "" // Platzhalter – wird später im Agenten ergänzt
   };
 
-  // Debug-Ausgabe
-  console.log("📤 JSON an Make:", payload);
+  // Debug
+  console.log("📤 Sende an Make:", payload);
 
-  // Abschicken an Make
+  // 6. Senden an Make Webhook
   fetch("https://hook.eu2.make.com/kuupzg3nxvpy5xm84zb7j8pmrcon2r2r", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
