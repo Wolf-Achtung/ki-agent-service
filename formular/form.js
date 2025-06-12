@@ -84,7 +84,7 @@ form.addEventListener("submit", function (event) {
       return response.json().catch(() => ({}));
     })
     .then(() => {
-      alert("✅ Daten erfolgreich übermittelt.");
+      window.location.href = "danke.html";
     })
     .catch((error) => {
       console.error("❌ Fehler beim Senden:", error);
