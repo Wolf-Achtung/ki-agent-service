@@ -1,4 +1,4 @@
-// form.js – erweitert für vollständiges Gutachten mit ausführlicher JSON-Struktur
+// form.js – finale Version mit Bewertungslogik & Übergabe an Make
 
 const form = document.getElementById("kiForm");
 
@@ -6,6 +6,8 @@ form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const formData = new FormData(form);
+
+  // Bewertung nach Branche
   const branchenMultiplikator = {
     "Medien": 1.1,
     "Bildung": 1.0,
@@ -18,6 +20,7 @@ form.addEventListener("submit", function (event) {
   const branche = formData.get("branche") || "Allgemein";
   const multiplikator = branchenMultiplikator[branche] || 1.0;
 
+  // Score berechnen
   let score = 0;
   for (let i = 1; i <= 10; i++) {
     const value = formData.get(`q${i}`);
@@ -29,6 +32,7 @@ form.addEventListener("submit", function (event) {
   score = Math.round(score * multiplikator);
   if (selbststaendig && score < 30) score += 2;
 
+  // Status & Bewertung bestimmen
   let status = "Basis";
   let bewertung = "Erste Grundlagen vorhanden, weiter so!";
   let badge_url = "https://example.com/badge-basis.png";
@@ -43,10 +47,12 @@ form.addEventListener("submit", function (event) {
     badge_url = "https://example.com/badge-exzellent.png";
   }
 
+  // Datum vorbereiten
   const heute = new Date();
   const datum = heute.toISOString().split("T")[0];
   const gueltig_bis = new Date(heute.setFullYear(heute.getFullYear() + 1)).toISOString().split("T")[0];
 
+  // Nutzdaten zusammenstellen
   const payload = {
     unternehmen: formData.get("unternehmen"),
     name: formData.get("name"),
@@ -64,21 +70,20 @@ form.addEventListener("submit", function (event) {
     gueltig_bis: gueltig_bis
   };
 
-  console.log("⤴️ JSON an Make:", payload);
+  // Debug-Ausgabe
+  console.log("📤 JSON an Make:", payload);
 
- fetch("https://hook.eu2.make.com/kuupzg3nxvpy5xm84zb7j8pmrcon2r2r", {
+  // Abschicken an Make
+  fetch("https://hook.eu2.make.com/kuupzg3nxvpy5xm84zb7j8pmrcon2r2r", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
   })
-   .then((response) => {
-  if (!response.ok) throw new Error("Fehler beim Übertragen: " + response.status);
-  return response.json().catch(() => ({})); // Leerer Fallback
-})
-
-    .then((data) => {
+    .then((response) => {
+      if (!response.ok) throw new Error("Fehler beim Übertragen: " + response.status);
+      return response.json().catch(() => ({}));
+    })
+    .then(() => {
       alert("✅ Daten erfolgreich übermittelt.");
     })
     .catch((error) => {
