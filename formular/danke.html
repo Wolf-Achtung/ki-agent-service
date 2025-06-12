@@ -1,66 +1,72 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="10; URL=/">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vielen Dank – KI-Check Pro</title>
+  <meta charset="UTF-8" />
+  <title>Vielen Dank</title>
   <style>
     body {
-      font-family: 'IBM Plex Mono', monospace;
-      background-color: #f0f4f8;
-      color: #0c2d48;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #f4f7fb;
+      color: #0e2b4f;
+      padding: 60px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      padding: 2rem;
-    }
-    .box {
-      background: white;
-      padding: 2rem 2.5rem;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.05);
-      max-width: 600px;
+      justify-content: center;
+      min-height: 100vh;
       text-align: center;
     }
-    h1 {
-      color: #1e90ff;
+
+    .logo {
+      max-height: 70px;
+      margin-bottom: 40px;
     }
+
+    h1 {
+      font-size: 28pt;
+      margin-bottom: 20px;
+    }
+
     p {
-      font-size: 1.1rem;
-      line-height: 1.5;
+      font-size: 15pt;
+      max-width: 600px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .info-box {
+      margin-top: 30px;
+      background-color: #eaf0f7;
+      border-left: 5px solid #003366;
+      padding: 25px;
+      border-radius: 8px;
+    }
+
+    .info-box p {
+      margin: 0;
     }
     .small {
       font-size: 0.9rem;
       color: #777;
       margin-top: 1rem;
-    }
-    .badge {
-      margin-top: 1rem;
-      height: 64px;
-    }
+
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>✅ Vielen Dank!</h1>
-    <p>
-      Ihre Angaben wurden erfolgreich übermittelt.<br>
-      Ihr individuelles PDF-Zertifikat wird nun erstellt.
-    </p>
-    <p>
-      In wenigen Minuten erhalten Sie Ihr Ergebnis inklusive<br>
-      „KI-Ready 2025“-Badge & Handlungsempfehlungen.
-    </p>
-    <img class="badge" src="../badges/KI-READY.png" alt="KI-Ready Badge">
-    <p class="small">
+
+  <img class="logo" src="https://check.ki-sicherheit.jetzt/badges/ki-sicherheit-logo.png" alt="KI-Sicherheit Logo" />
+
+  <h1>Vielen Dank für Ihre Angaben!</h1>
+  <p>Ihr strategisches KI-Briefing wird jetzt erstellt. Das kann einen Moment dauern.</p>
+
+  <div class="info-box">
+    <p>Sie erhalten das PDF-Dokument automatisch an die angegebene E-Mail-Adresse, sobald die Auswertung abgeschlossen ist.</p>
+<p class="small">
       Dieses Dokument ist steuerlich absetzbar und dient als<br>
       offizieller Nachweis gegenüber Kunden & Behörden.
     </p>
     <p class="small">Sie werden in wenigen Sekunden automatisch zurückgeleitet.</p>
   </div>
+
 </body>
 </html>
