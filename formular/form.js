@@ -79,10 +79,10 @@ form.addEventListener("submit", function (event) {
   console.log("📤 Sende an Make:", payload);
 
   // 6. Senden an Make Webhook
-  fetch("https://hook.eu2.make.com/w7lf3cukwte0yxdgvh6gpfq8uk2ugomc", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
+fetch("https://ki-agent-service-production-a3fc.up.railway.app/submit", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(formData)
   })
     .then((response) => {
       if (!response.ok) throw new Error("Fehler beim Übertragen: " + response.status);
