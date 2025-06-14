@@ -79,7 +79,7 @@ form.addEventListener("submit", function (event) {
   console.log("📤 Sende an Make:", payload);
 
   // 6. Senden an Make Webhook
-  fetch("https://hook.eu2.make.com/xtnqtiwwsa5soj3net2mf3vn3wrbp9gq", {
+  fetch("https://hook.eu2.make.com/w7lf3cukwte0yxdgvh6gpfq8uk2ugomc", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
