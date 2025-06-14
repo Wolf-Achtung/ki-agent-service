@@ -19,7 +19,8 @@ async def submit_briefing(req: Request):
     full = merge_sections(exec_sec, strat_sec, road_sec, res_sec)
 
     # Weiterleitung an Make Webhook
-    make_url = os.getenv("https://hook.eu2.make.com/ehepkfr6i41y11d4wteensnmm64o923w")  # Setze das in Railway!
+    make_url = os.getenv("MAKE_WEBHOOK_URL")
+  # Setze das in Railway!
     requests.post(make_url, json=full)
 
     return {"status": "ok", "briefing": full}
