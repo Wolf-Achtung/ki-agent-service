@@ -1,24 +1,24 @@
-# KI-Briefing Agent Service
+# KI-Agent-Service 🚀
 
-## Setup
+Ein Agentensystem zur Analyse von Unternehmensdaten via KI (GPT-4), das automatisch ein Executive Briefing mit Handlungsempfehlungen erstellt.
 
-1. `.env` mit `OPENAI_API_KEY` anlegen.
-2. `pip install -r requirements.txt`
-3. `uvicorn main:app --reload` starten.
+## 📦 Projektstruktur
 
-## API
+- `formular/`: HTML-Frontend mit Fragebogen
+- `agent-backend/`: Node.js/Express + GPT-Agentenlogik
+- Deployment: Netlify (Frontend) & Railway (Backend)
 
-POST `/briefing` mit JSON payload:
+## 🧠 Agenten
 
-```json
-{
-  "branche": "Handel",
-  "selbststaendig": "Nein",
-  "massnahmen": "...",
-  "score": 14,
-  "status": "Basis",
-  "bewertung": "...",
-  "herausforderung": "...",
-  "tools": "...",
-  "ziel": "..."
-}
+1. **Strategist**: analysiert Ziele, Reifegrad, Potenzial
+2. **Expert**: erstellt Empfehlungen mit Tools & Roadmap
+3. **Legal**: DSGVO & EU AI Act Profil & Pflichten
+4. **Merger**: generiert validiertes JSON für PDF-Ausgabe
+
+## 🚀 Setup (lokal)
+
+```bash
+cd agent-backend
+cp .env.example .env
+npm install
+npm run dev
