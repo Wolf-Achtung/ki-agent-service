@@ -82,7 +82,7 @@ form.addEventListener("submit", function (event) {
 fetch("https://ki-agent-service-production-a3fc.up.railway.app/submit", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(formData)
+  body: JSON.stringify(payload)
   })
     .then((response) => {
       if (!response.ok) throw new Error("Fehler beim Übertragen: " + response.status);
