@@ -1,0 +1,14 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+pytest = "*"
+
+[packages]
+crewai-tools = ">=0.47.0"
+openai = "*"
+flask = "*"
+requests = "*"
+python-dotenv = "*"
