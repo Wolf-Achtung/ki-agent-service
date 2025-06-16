@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Testformular senden</title>
+  <style>
+    body { font-family: sans-serif; padding: 40px; }
+    button { font-size: 18px; padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <h1>Testformular automatisch einreichen</h1>
+  <p>Ein Klick auf den Button sendet eine Beispiel-Nutzlast an die Analyse-API.</p>
+  <button onclick="submitTest()">Jetzt testen</button>
+
+  <script>
+    async function submitTest() {
+      const testPayload = {
+        name: "Test User",
+        unternehmen: "Test GmbH",
+        analyseInput: `
+          Branche: Beratung
+          Selbstständig: Ja
+          Frage 1: 4, Frage 2: 5, Frage 3: 4, Frage 4: 3, Frage 5: 5,
+          Frage 6: 2, Frage 7: 3, Frage 8: 5, Frage 9: 4, Frage 10: 5
+          Tools: ChatGPT, Midjourney
+          Maßnahmen: Automatisierung
+          Ziel: Wettbewerbsvorteil
+          Herausforderung: Ressourcenknappheit
+        `
+      };
+
+      try {
+        const res = await fetch("https://ki-agent-service-production.up.railway.app/analyse", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(testPayload)
+        });
+
+        if (res.ok) {
+          alert("Testdaten erfolgreich übermittelt!");
+        } else {
+          alert("Fehler bei der Übertragung: " + (await res.text()));
+        }
+      } catch (e) {
+        alert("Verbindung fehlgeschlagen: " + e.message);
+      }
+    }
+  </script>
+</body>
+</html>
