@@ -17,11 +17,11 @@ app.post("/webhook", async (req, res) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${process.env.PDFMONKEY_API_KEY}`
+      Authorization: `Bearer ${process.env.PDFMONKEY_API_KEY}`
     },
     body: JSON.stringify({
       document: {
-        template_id: "template-id-dein-pdf-briefing",
+        template_id: process.env.PDFMONKEY_TEMPLATE_ID, // ⚠️ besser als feste ID
         payload: { briefingData: result }
       }
     })
@@ -30,4 +30,7 @@ app.post("/webhook", async (req, res) => {
   res.json(result);
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Server läuft auf Port", process.env.PORT || 3000);
+});
+
