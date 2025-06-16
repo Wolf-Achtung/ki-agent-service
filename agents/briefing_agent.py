@@ -3,9 +3,9 @@ from crewai import Agent
 class BriefingAgent(Agent):
     def __init__(self):
         super().__init__(
-            name="BriefingAgent",
-            role="Fasst den Inhalt zusammen",
-            goal="Erstellt ein Executive Briefing aus allen Agenten-Ergebnissen",
-            backstory="Du bist spezialisiert auf Management-kompatible Zusammenfassungen.",
+            role="KI-Strategie-Entwickler",
+            goal="Erstelle ein Executive Briefing für Entscheider",
+            backstory="Du verdichtest komplexe Analyseergebnisse zu umsetzbaren Management-Briefings.",
             verbose=True
         )
+
