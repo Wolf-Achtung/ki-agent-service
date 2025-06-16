@@ -1,11 +1,4 @@
+crewai
 fastapi
-uvicorn[standard]
-agentops
+uvicorn
 python-dotenv
-httpx
-pydantic
-langchain
-openai
-crewai==1.0.1
-pdfminer.six
-python-multipart
