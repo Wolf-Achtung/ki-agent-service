@@ -67,10 +67,10 @@ form.addEventListener("submit", function (event) {
 
   // 📦 Finaler Payload
   const payload = {
-  name: formData.get("name"),
-  unternehmen: formData.get("unternehmen"),
-  antworten: antworten  // das ist bereits korrekt als Objekt aufgebaut!
-};
+    name: formData.get("name"),
+    unternehmen: formData.get("unternehmen"),
+    antworten: antworten
+  };
 
   console.log("📦 Sende an KI-Agenten:", payload);
 
@@ -84,11 +84,10 @@ form.addEventListener("submit", function (event) {
       if (!res.ok) throw new Error("Serverfehler: " + res.status);
       return res.json();
     })
-    .then((res) => res.json())
-.then((data) => {
-  localStorage.setItem("kiErgebnis", JSON.stringify(data));
-  window.location.href = "danke.html";
-})
+    .then((data) => {
+      localStorage.setItem("kiErgebnis", JSON.stringify(data));
+      window.location.href = "danke.html";
+    })
     .catch((err) => {
       console.error("❌ Fehler beim Senden:", err);
       alert("Es gab ein Problem beim Senden. Bitte später erneut versuchen.");
