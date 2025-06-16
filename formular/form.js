@@ -80,7 +80,7 @@ form.addEventListener("submit", function (event) {
   console.log("📦 Sende an KI-Agenten:", payload);
 
   // 📡 API-Aufruf
-  fetch("https://ki-agent-service-production.up.railway.app/analyse", {
+  fetch("https://ki-agent-service-production.up.railway.app/api/analyse", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
