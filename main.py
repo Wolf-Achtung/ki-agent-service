@@ -19,7 +19,11 @@ app = FastAPI()
 # CORS aktivieren
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # alternativ: ["https://agent.ki-sicherheit.jetzt"]
+    allow_origins=[
+    "https://agent.ki-sicherheit.jetzt",
+    "http://localhost:5500",  # für lokale Tests
+]
+
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
@@ -32,6 +36,10 @@ class AnalyseInput(BaseModel):
     antworten: dict  # Beispiel: {"frage1": "Antwort A", "frage2": "Antwort B"}
 
 # API-Route
+@app.options("/api/analyse")
+async def options_handler():
+    return JSONResponse(status_code=200)
+
 @app.post("/api/analyse")
 async def analyse(request: Request):
     try:
@@ -43,7 +51,6 @@ async def analyse(request: Request):
 
         logger.info("✅ Eingabe validiert. Starte Mock-Analyse.")
 
-        # MOCK-Ergebnis (Crew-Logik deaktiviert zum Testen)
         result = {
             "score": 85,
             "status": "Vorreiter",
