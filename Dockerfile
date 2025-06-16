@@ -15,7 +15,8 @@ COPY . .
 ENV PORT=8080
 
 # App starten mit uvicorn auf Port 8080
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD exec uvicorn main:app --host 0.0.0.0 --port 8080
+
 
 
 
