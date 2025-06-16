@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+agentops
+python-dotenv
+httpx
+pydantic
+langchain
+openai
+crewai==1.0.1
+pdfminer.six
+python-multipart
