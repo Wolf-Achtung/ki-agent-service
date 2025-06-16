@@ -67,15 +67,10 @@ form.addEventListener("submit", function (event) {
 
   // 📦 Finaler Payload
   const payload = {
-    name: formData.get("name"),
-    unternehmen: formData.get("unternehmen"),
-    analyseInput: analyseText,
-    score,
-    bewertung,
-    status,
-    datum,
-    quvis_bis
-  };
+  name: formData.get("name"),
+  unternehmen: formData.get("unternehmen"),
+  antworten: antworten  // das ist bereits korrekt als Objekt aufgebaut!
+};
 
   console.log("📦 Sende an KI-Agenten:", payload);
 
