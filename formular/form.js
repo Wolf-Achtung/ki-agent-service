@@ -84,9 +84,11 @@ form.addEventListener("submit", function (event) {
       if (!res.ok) throw new Error("Serverfehler: " + res.status);
       return res.json();
     })
-    .then(() => {
-      window.location.href = "danke.html";
-    })
+    .then((res) => res.json())
+.then((data) => {
+  localStorage.setItem("kiErgebnis", JSON.stringify(data));
+  window.location.href = "danke.html";
+})
     .catch((err) => {
       console.error("❌ Fehler beim Senden:", err);
       alert("Es gab ein Problem beim Senden. Bitte später erneut versuchen.");
