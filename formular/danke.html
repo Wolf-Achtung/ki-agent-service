@@ -69,7 +69,34 @@
   </div>
 <script>
   const ergebnis = JSON.parse(localStorage.getItem("kiErgebnis"));
-  document.write("<pre>" + JSON.stringify(ergebnis, null, 2) + "</pre>");
+
+  if (ergebnis?.pdf_url) {
+    const box = document.createElement("div");
+    box.className = "info-box";
+    box.innerHTML = `
+      <p><strong>📄 Ihr PDF-Briefing ist fertig!</strong></p>
+      <p><a href="${ergebnis.pdf_url}" target="_blank" style="color:#003366;font-weight:bold;">Hier klicken, um das PDF herunterzuladen</a></p>
+    `;
+    document.body.appendChild(box);
+  }
+
+  const restartBtn = document.createElement("button");
+  restartBtn.textContent = "🔄 Briefing erneut starten";
+  restartBtn.style = `
+    margin-top: 40px;
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  `;
+  restartBtn.onclick = () => {
+    localStorage.removeItem("kiErgebnis");
+    window.location.href = "index.html";  // oder deine Startseite
+  };
+  document.body.appendChild(restartBtn);
 </script>
 
 </body>
