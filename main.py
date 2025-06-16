@@ -19,10 +19,12 @@ app = FastAPI()
 # CORS aktivieren
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-    "https://agent.ki-sicherheit.jetzt",
-    "http://localhost:5500",  # für lokale Tests
-]
+    allow_origins=["*"],  # oder z.B. ["https://agent.ki-sicherheit.jetzt"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
 
     allow_credentials=True,
     allow_methods=["*"],
