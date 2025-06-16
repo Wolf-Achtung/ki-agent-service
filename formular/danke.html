@@ -67,6 +67,10 @@
     </p>
     <p class="small">Sie werden in wenigen Sekunden automatisch zurückgeleitet.</p>
   </div>
+<script>
+  const ergebnis = JSON.parse(localStorage.getItem("kiErgebnis"));
+  document.write("<pre>" + JSON.stringify(ergebnis, null, 2) + "</pre>");
+</script>
 
 </body>
 </html>
